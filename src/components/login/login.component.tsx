@@ -43,7 +43,7 @@ const Login = (props:any) => {
 }
 
 const LoginForm = (props:any) => {
-    console.log("lol")
+
     let history = useHistory();
 
     if(props.currentLogin && props.currentToken) {

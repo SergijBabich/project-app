@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { NavLink, Route } from 'react-router-dom'
-import '../../App.css';
-const Settings = () => {
-    
+import s from './settings.module.css'
+const Settings = (props) => { 
+   
+    const [mode, setMode] = useState(false);
+
    const handleChange = () => {
-       console.log("ok")
+       setMode(!mode)
+       props.triggerSearch(mode);
+       
    }
     return (
-       <div>
+       <div className={s.settings}>
              <input
-                 type="checkbox"
+                checked={mode}
+                  type="checkbox"
                   name={'name'}
-                 onChange={handleChange}
+                  onChange={handleChange}
              />
+             <span>Light/Dark</span>
        </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import LoginContainer from './components/login/login-container.component';
 import Main from './components/main/main.component';
@@ -8,15 +8,19 @@ import {Provider} from  'react-redux';
 import store from './redux/redux_store'
 
 
-function App() {
+const App = () => { 
+
+  const [mode, setMode] = useState(true);
+  const triggerSearch = (value:Boolean) => {
+    setMode(value)
+  }
   return (
-    <div className="container">
+    <div className={mode? "container_light": "container_dark"}>
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Provider  store ={store} >
         <Route exact path='/' render={() => <Redirect to='/login'/>}/>
           <div>
             <Route path='/login'  render= { ()=> {
-              console.log()
               return  <React.Suspense>
                          <div class='container__login'>
                              <LoginContainer />
@@ -29,7 +33,7 @@ function App() {
           <Route path='/main'  render= { ()=> {
            return  <React.Suspense>
             <div className="container__main">
-                <Main />
+                <Main triggerSearch={triggerSearch} />
             </div>
               </React.Suspense>
         }} />

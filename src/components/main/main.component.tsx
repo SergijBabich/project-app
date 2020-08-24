@@ -5,7 +5,7 @@ import ProjectGeneralContainer from '../project-general/project-general-containe
 import {Route} from  'react-router-dom';
 import Settings from "../settings/settings.component";
 import main from './main.module.css';
-const Main = () => {
+const Main = (props) => {
     return (
         <div className={main.main}>
             <div className={main.main__sidebar}>
@@ -18,7 +18,11 @@ const Main = () => {
                       <ProjectGeneralContainer/>
                      </React.Suspense>
                     }} />
-                 <Route path='/main/settings'  component = { Settings } />
+                <Route path='/main/settings'  render = { () => {
+                   return    <React.Suspense>
+                      <Settings triggerSearch={props.triggerSearch}/>
+                     </React.Suspense>
+                    }} />
             </div>
         </div>
     )
