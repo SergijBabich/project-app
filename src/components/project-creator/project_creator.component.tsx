@@ -1,32 +1,38 @@
 import React, {useState} from "react";
 import { Field, reduxForm } from 'redux-form';
-import {Input} from '../../utils/form-control';
+import {Input, Textarea} from '../../utils/form-control';
 import {File} from '../../utils/form-control';
 import { Redirect, Link } from "react-router-dom"; 
-import {required , maxLengthCreator, minLengthCreator} from '../../utils/validators/validators';
+import {required , maxLengthCreator, minLengthCreator, checkformat} from '../../utils/validators/validators';
 import { useHistory } from "react-router-dom";
+import p from './project-creator.module.css'
 
+interface Form {
+    title?: string,
+    description?:string
+}
 
 const ProjectCreator = (props:any) => {
     const [step, setStep] = useState(1);
     const [title, setTitle] = useState(null);
     let history = useHistory();
     console.log(props)
-    const setProjectsTitle = (value) => {
+    const setProjectsTitle = (value:Form) => {
         setTitle(value.title);
         setStep(step +1)
     }
 
-    const setProjectsDescription = (value) => {
+    const setProjectsDescription = (value:Form) => {
         props.createUsersProject(title, value.description, props.token);
         setStep(step+1)
-        redirect(step)
     }
 
-    const redirect = (step:number) => {
-        if(step === 2 && props.projectId) {
-            history.push("/main/projects");
-       }
+    const redirect = () => {
+        setTimeout(() =>history.push("/main/projects") , 2000);       
+    }
+    
+    if(step ===3 ) {  
+        redirect()
     }
 
     if(!props.token) {
@@ -34,7 +40,8 @@ const ProjectCreator = (props:any) => {
     }
    
 
-    const switchForms = () => {     
+    const switchForms = () => {  
+        console.log(step)   
         switch(step) {
             case 1: 
             return(
@@ -45,16 +52,16 @@ const ProjectCreator = (props:any) => {
                 <ProjestsDescriptionRedux onSubmit={setProjectsDescription} />
             )
             default:
-                return <div>lol</div>;     
+                return <div>Проект успешно создан</div>;     
         } 
       }
 
     return (
-        <div>
+        <>
             {
                 switchForms()
             }
-        </div>
+        </>
 
     )
 }
@@ -63,26 +70,25 @@ const ProjectCreator = (props:any) => {
 
 const ProjestsTitleForm = (props:any) => {
     return (
-        <div>
-         <form  onSubmit = {props.handleSubmit}>
-             <h1 >Enter song fragment</h1>
-             <Field component={Input}     validate={[required]}  name={'title'}  placeholder='String from soung' />
-             
+        <>
+         <form   className={p.form} onSubmit = {props.handleSubmit}>
+             <h3 >Enter title</h3>
+             <Field component={Input}     validate={[required, checkformat]}  name={'title'}  placeholder='String from soung' />
              <button> Next </button>
           </form>   
-        </div>
+        </>
     )
 }
 
 const ProjestsDescriptionForm = (props:any) => {
     return (
-        <div>
-         <form  onSubmit = {props.handleSubmit}>
-             <h1 >Enter </h1>
-             <Field component={Input}     validate={[required]}  name={'description'}  placeholder='String from soung' />
+        <>
+         <form   className={p.form} onSubmit = {props.handleSubmit}>
+             <h1 >Enter description </h1>
+             <Field component={Textarea}  cols="40" rows="10"  className={p.textarea} validate={[required]}  name={'description'}/>
              <button> Submit</button>
           </form>   
-        </div>
+        </>
     )
 }
 

@@ -7,7 +7,9 @@ import {sendFormForAuthorization} from '../../redux/login-reducer'
 let mapStateToprops = (state: any) => {
   return {
     token: state.login.token,
-    status: state.login.status
+    status: state.login.status,
+    login: state.login.login,
+    errorCode: state.login.errorCode
   }
 
 }

@@ -1,0 +1,19 @@
+.main {
+  width: 1170px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin:auto;
+  height: 100vh;
+}
+.main__sidebar {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+}
+.main__general {
+  flex: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
