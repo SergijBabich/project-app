@@ -11,7 +11,7 @@ export const required = (value: any) => {
     return 'Field is required';
   }
 
-  export const checkformat = (valuel: any) => {
+  export const checkformat = (value: any) => {
     if (value) {if (value !== value.replace(/[^A-Za-z]/ig, ''))  return `must contain only English letters`;
       return undefined;
       }
