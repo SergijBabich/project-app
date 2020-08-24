@@ -31,7 +31,6 @@ export const createUsersProject = (title, description, token) => {
     console.log(title, description ,token)
     let data = await UsersApi.createNewProject(title, description, token);
      dispatch(setProjectToken(data.projectId))
-    console.log(data)
   }  
 
   }

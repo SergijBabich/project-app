@@ -16,7 +16,7 @@ const ProjectCreator = (props:any) => {
     const [step, setStep] = useState(1);
     const [title, setTitle] = useState(null);
     let history = useHistory();
-    console.log(props)
+
     const setProjectsTitle = (value:Form) => {
         setTitle(value.title);
         setStep(step +1)
@@ -41,7 +41,6 @@ const ProjectCreator = (props:any) => {
    
 
     const switchForms = () => {  
-        console.log(step)   
         switch(step) {
             case 1: 
             return(
@@ -94,11 +93,11 @@ const ProjestsDescriptionForm = (props:any) => {
 
 
 const ProjestsTitleRedux = reduxForm({
-    form:'postSound'
+    form:'title'
   })(ProjestsTitleForm)
 
 const ProjestsDescriptionRedux = reduxForm({
-    form:'postSound'
+    form:'description'
   })(ProjestsDescriptionForm)
 
 export default ProjectCreator;

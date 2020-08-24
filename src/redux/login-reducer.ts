@@ -21,7 +21,6 @@ let initialState: initialState = {
   const loginReducer = ( state = initialState, action: any) => {
   switch (action.type) {
     case SET_USER_DATA: 
-    console.log(action.data)
       return {
       ...state,  token: action.data.token,
                  status: action.data.status,
@@ -45,7 +44,6 @@ const setUserToken = (data: any) => {
 export const sendFormForAuthorization = (login: string, password: string) => {
   return  async (dispatch: any) => {
      let data = await UsersApi.login(login, password);
-     console.log(data)
        dispatch(setUserToken(data))
   }  
 

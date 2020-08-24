@@ -142,7 +142,7 @@ const EditForm = (props:any) => {
 }
 
 export const EditFormRedux = reduxForm({
-    form:'EditForm',
+    form:'editForm',
     enableReinitialize: true
   })(EditForm)
 
