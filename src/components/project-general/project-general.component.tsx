@@ -72,6 +72,7 @@ const ProjectsList = (props:ShowFullProject) => {
 }
 
 const ShowFullProjectData = (props:any) => {
+    const [popap , setPopap] = useState(false);
     const [edit, setEdit] = useState('disable');
 
     const onEditMode = () => {
@@ -79,7 +80,7 @@ const ShowFullProjectData = (props:any) => {
     }
 
     const onSaveEdit = (value:ProjectEditForm):void => {
-        props.editUserProject(value.titleEdit, value.descriptionEdit, props.projectsList._id, props.token);
+        props.editUserProject(value.titleEdit, value.descriptionEdit.trim(), props.projectsList._id, props.token);
           hideForm();        
     }
     const hideForm = () => {
@@ -87,19 +88,31 @@ const ShowFullProjectData = (props:any) => {
         setEdit('disable')
     }
 
-    const onDeleteProject = () => {
-        props.setShow(false)
+    const onCompfirmDeleteProject = (answer) => {
+        setPopap(true);
+    }
+
+    const deleteProject = () => {
         props.removeUsersProject(props.projectsList._id, props.token);
+        props.setShow(false)
+    }
+
+    const cancelDelete = () => {
+        props.setShow(false)
     }
 
     return (
      <div  className={p.project__info}>
+         {popap && <DeleteConfirmationWindow cancelDelete={cancelDelete} deleteProject={deleteProject} />}
         { edit === 'disable' && 
         <div>
             <div className={p.project__title}>
               {props.projectsList.title}
               <div>
                 <button className={p.button} onClick = {onEditMode} >Edit</button>
+              </div>
+              <div>
+                  <button className={p.button} onClick={onCompfirmDeleteProject} type="button"  name="button">Delete </button> 
               </div>
             </div>
             <div className={p.project__description}>
@@ -109,9 +122,6 @@ const ShowFullProjectData = (props:any) => {
         }
         { edit === 'enable' &&
             <>
-              <div>
-                  <button className={p.button} onClick={onDeleteProject} type="button"  name="button">Delete </button> 
-              </div>
               <div>
                 <EditFormRedux onSubmit ={onSaveEdit} 
                                projectsList ={props.projectsList} 
@@ -125,6 +135,32 @@ const ShowFullProjectData = (props:any) => {
         }
      </div>    
         
+    )
+}
+
+const DeleteConfirmationWindow = (props) => {
+    const onDeleteProject = () => {
+        props.deleteProject();
+    }
+    const onCancel = () => {
+        props.cancelDelete();
+    }
+    return (
+        <div className={p.modal}>
+          <div className={p.modal__window}>
+            <div className={p.window__title}>
+                    <h3>Do you really wanna delete the project</h3>
+                </div>
+                <div className={p.window__button}>
+                    <div className={p.window__button_action}>
+                        <button className={p.button} onClick={onDeleteProject} type="button"  name="button">Delete </button> 
+                    </div>
+                    <div className={p.window__button_action}>
+                        <button className={p.button} onClick={onCancel} type="button"  name="button">Cancel </button> 
+                    </div>
+                 </div>
+           </div>
+        </div>
     )
 }
 

@@ -66,3 +66,6 @@
 .textarea {
     resize: none;
  }
+ .error {
+   color: red ;
+ }

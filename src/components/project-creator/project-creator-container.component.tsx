@@ -6,7 +6,8 @@ import {createUsersProject} from '../../redux/project-сreator-reducer'
 let mapStateToprops = (state: any) => {
   return {
     token: state.login.token,
-    projectId: state.projectCreator.projectId
+    projectId: state.projectCreator.projectId,
+    projectsList: state.projects.projectsList,
   }
 
 }

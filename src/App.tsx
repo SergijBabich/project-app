@@ -12,6 +12,7 @@ const App = () => {
 
   const [mode, setMode] = useState(true);
   const triggerSearch = (value:Boolean) => {
+    localStorage.setItem("mode", value)
     setMode(value)
   }
   return (

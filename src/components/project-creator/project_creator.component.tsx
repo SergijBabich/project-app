@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import { Field, reduxForm } from 'redux-form';
 import {Input, Textarea} from '../../utils/form-control';
 import {File} from '../../utils/form-control';
-import { Redirect, Link } from "react-router-dom"; 
-import {required , maxLengthCreator, minLengthCreator, checkformat} from '../../utils/validators/validators';
+import { Redirect} from "react-router-dom"; 
+import {required, checkformat} from '../../utils/validators/validators';
 import { useHistory } from "react-router-dom";
 import p from './project-creator.module.css'
 
@@ -15,11 +15,27 @@ interface Form {
 const ProjectCreator = (props:any) => {
     const [step, setStep] = useState(1);
     const [title, setTitle] = useState(null);
+    const [checkTtitle, setCheckTitle] = useState(false);
     let history = useHistory();
 
     const setProjectsTitle = (value:Form) => {
-        setTitle(value.title);
+       setTitle(value.title);
+       let findTheSameTitleName = props.projectsList.find((el) => el.title === value.title);
+
+       if(!findTheSameTitleName) {
         setStep(step +1)
+       } else {
+        setCheckTitle(true);
+       }
+
+    }
+    
+    const checkValueTitle = () => {
+        return (
+            <div>
+                no no no
+            </div>
+        )
     }
 
     const setProjectsDescription = (value:Form) => {
@@ -44,7 +60,7 @@ const ProjectCreator = (props:any) => {
         switch(step) {
             case 1: 
             return(
-                <ProjestsTitleRedux onSubmit={setProjectsTitle} />
+                <ProjestsTitleRedux checkTtitle={checkTtitle} onSubmit={setProjectsTitle} /> 
             )
             case 2: 
             return(
@@ -74,7 +90,9 @@ const ProjestsTitleForm = (props:any) => {
              <h3 >Enter title</h3>
              <Field component={Input}     validate={[required, checkformat]}  name={'title'}  placeholder='String from soung' />
              <button> Next </button>
+             {props.checkTtitle && <div className={p.error}>this title already exist </div>}
           </form>   
+          {}
         </>
     )
 }
