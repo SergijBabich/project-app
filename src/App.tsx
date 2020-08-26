@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import LoginContainer from './components/login/login-container.component';
+import Login from './components/login/login-container.component';
 import Main from './components/main/main.component';
 
 import {HashRouter, Route, Redirect, BrowserRouter} from  'react-router-dom';
@@ -24,7 +24,7 @@ const App = () => {
             <Route path='/login'  render= { ()=> {
               return  <React.Suspense>
                          <div class='container__login'>
-                             <LoginContainer />
+                             <Login />
               
                          </div>
                     </React.Suspense>

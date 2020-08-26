@@ -5,38 +5,8 @@ import {File} from '../../utils/form-control';
 import { Redirect } from "react-router-dom"; 
 import {required , maxLengthCreator, minLengthCreator, checkformat} from '../../utils/validators/validators';
 import { useHistory } from "react-router-dom";
-import m from './login.module.css'
-const maxLength20 = maxLengthCreator(20);
+import m from './login.module.css';
 const minLength8 = minLengthCreator(4);
-
-const Login = (props:any) => {
-  
-    let history = useHistory();
-    let currentToken;
-    let  currentFont = JSON.parse(localStorage.getItem('state'));
-    if (currentFont) {
-         currentToken = currentFont.login.token;
-    }
-
-    const onSubmitAuthorization = (value: any) => {        
-        if(!props.login) {
-            props.sendFormForAuthorization(value.login, value.password);
-        } 
-        if(props.login) {
-            props.sendFormForAuthorization(props.login, value.password);
-            setTimeout(()=>history.push("/main/projects"),150) 
-        }
-    }
-
-    return (
-        <div className={m.form}>
-            <LoginFormRedux currentToken={currentToken} login={props.login} errorCode={props.errorCode} onSubmit={onSubmitAuthorization} />
-            {props.errorCode && <div className={m.message}>{props.errorCode}</div> }
-          </div>
-     
-
-    )
-}
 
 const LoginForm = (props:any) => {
 
@@ -58,7 +28,8 @@ const LoginForm = (props:any) => {
 }
 
 const LoginFormRedux = reduxForm({
-    form:'postSound'
+    form:'login-form'
   })(LoginForm)
+
+export default LoginFormRedux;
   
-export default Login;

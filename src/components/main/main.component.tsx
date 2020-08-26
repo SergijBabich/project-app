@@ -1,10 +1,11 @@
 import React from "react";
 import Sidebar from "../sidebar/sidebar.component";
-import ProjectCreatorContainer from '../project-creator/project-creator-container.component';
+import ProjectCreatorContainer from '../projests-creator/project-creator-container.component';
 import ProjectGeneralContainer from '../project-general/project-general-container.component';
 import {Route} from  'react-router-dom';
 import Settings from "../settings/settings.component";
 import main from './main.module.css';
+
 const Main = (props) => {
     return (
         <div className={main.main}>
