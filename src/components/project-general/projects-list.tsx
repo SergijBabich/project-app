@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React from "react";
 import p from './project-general.module.css'
 import ShowFullProjectData from './full-project-data';
 
