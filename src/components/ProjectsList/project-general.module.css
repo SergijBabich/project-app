@@ -1,0 +1,163 @@
+.projects {
+    height: 100%;
+    position: relative;
+}
+.projects__list {
+    display: flex;
+    width: 600px;
+    height: 50px;
+    justify-content: space-around;
+    margin: 10px;
+    border: 3px solid black;
+}
+.project__button {
+    flex:30%;
+}
+.button {
+    padding: 10px 10px;
+}
+.project__title {
+    flex:70%;
+    text-align: center;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+  }
+  .form .message {
+    margin: 15px 0 0;
+    color: #da0808;
+    font-size: 12px;
+  }
+  .form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+
+  .textarea {
+    resize: none;
+ }
+ .button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+ }
+ .project__info {
+   width: 100%;
+   height: auto;
+ }
+ .project__title {
+   height: 80px;
+   display: flex;
+   justify-content: space-around;
+ }
+ .project__description {
+   text-align: center;
+ }
+
+
+ .modal {
+  margin: auto;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 34;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #9ea4ad94;
+  top: 0px;
+}
+.modal__window {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  border: 2px solid #e6dada14;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  align-items: center;
+}
+.window__button {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.window__title h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 23px;
+    color: #1a73e8;
+}
+
+.button {
+  width: 110px;
+  height: 50px;
+  border: 1px solid #1a73e8;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  outline: none; /* убирать контур в Mozilla */
+  font-size: 17px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: 520;
+}
+
+.active {
+  width: 110px;
+  background: linear-gradient(45deg, #1a73e8, #83ade2);
+  transition: 0.3s;
+  color: white;
+}
+
+.active:hover {
+  transition: 0.3s;
+  box-shadow: 0 0 10px #1a73e8;
+  background: linear-gradient(45deg, #83ade2, #1a73e8);
+}

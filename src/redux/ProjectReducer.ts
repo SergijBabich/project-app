@@ -38,7 +38,6 @@ let initialState = {
 }
 
 const getUsersProjectsList = (data: object) => {
-  console.log(data)
   return {
     type: GET_USERS_PROJECTS,
     data
@@ -54,7 +53,6 @@ const checkEditStatus = (status: string) => {
   }
 }
 const setMode = (el) => {
-  console.log(el)
   return {
     type: SET_INITIAL_VALE,
     el
@@ -62,7 +60,6 @@ const setMode = (el) => {
 }
 
 const setFlagMode = (editFlag) => {
-  console.log(editFlag)
   return {
     type: FLAG,
     editFlag
@@ -73,7 +70,6 @@ export const editUserProject = (title: string, description: string,id: string, t
   return  async (dispatch: any) => {
      let data = await UsersApi.saveEditedProject(title, description,id, token);
        dispatch(getUsersProjectsList(data))
-       console.log(data)
   }  
 }
 
@@ -83,6 +79,7 @@ export const getUsersProjects = (token: string) => {
        dispatch(getUsersProjectsList(data)) 
   }  
 }
+
 export const removeUsersProject = (id: string, token: string) => {
   return   async (dispatch: any) => {
      let data = await UsersApi.deleteProject(id, token);
@@ -101,8 +98,5 @@ export const setEditMode = (editFlag) => {
      dispatch(setFlagMode(editFlag)) 
   }
 }
-
-
-
 
 export default projectReducer;

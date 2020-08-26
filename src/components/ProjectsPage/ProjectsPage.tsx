@@ -1,17 +1,13 @@
-import React, {useEffect} from "react"
-import {connect} from   "react-redux"
-import ProjectsList from "./projects-list"
-import {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} from "../../redux/project-reducer"
-import { Redirect } from "react-router-dom" 
-import Accordion from "@material-ui/core/Accordion"
-import AccordionDetails from "@material-ui/core/AccordionDetails"
-import AccordionSummary from "@material-ui/core/AccordionSummary"
-import p from "./project-general.module.css"
-import PropTypes from "prop-types" 
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
-
-
-interface ProjectsList {
+import React, {useEffect} from "react";
+import ProjectsList from '../ProjectsList/ProjectsList';
+import { Redirect } from "react-router-dom" ;
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import PropTypes from "prop-types" ;
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import './ProjectsPage.css'
+interface ProjectsList1 {
   _id: string,
   title:string,
   description: string,
@@ -39,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 )
 
-const ProjectGeneral = (props:any) => {
+const ProjectsPage = (props:any) => {
 
 	useEffect(() => {
 		props.getUsersProjects(props.token)
@@ -57,8 +53,8 @@ const ProjectGeneral = (props:any) => {
 	}
 
 	return (
-		<div className={p.projects}>
-			{ props.projectsList.map( (el:ProjectsList , index:number) => {
+		<div className='projects'>
+			{ props.projectsList.map( (el:ProjectsList1 , index:number) => {
 				return (
 					<div key={index}>
 						{el.title}
@@ -68,7 +64,7 @@ const ProjectGeneral = (props:any) => {
 								id="panel1bh-header"
 								className={classes.MuiButtonBaseroot}
 							>
-								<button  className={p.button}  onClick={() => {props.setEditMode(false)}}>Expander</button>
+								<button  className='button'  onClick={() => {props.setEditMode(false)}}>Expander</button>
 							</AccordionSummary>
 							<AccordionDetails>
 								<ProjectsList initialValue={props.initialValue} 
@@ -91,7 +87,7 @@ const ProjectGeneral = (props:any) => {
 	)
 }
 
-ProjectGeneral.propTypes = {  
+ProjectsPage.propTypes = {  
 	token: PropTypes.string,
 	projectsList: PropTypes.array,
 	status: PropTypes.string,
@@ -100,17 +96,4 @@ ProjectGeneral.propTypes = {
 	removeUsersProject: PropTypes.func
 }
 
-const mapStateToProps = (state: any) => {
-	return {
-		token: state.login.token,
-		projectsList: state.projects.projectsList,
-		status: state.projects.status,
-		initialValue: state.projects.initialValue,
-		editFlag: state.projects.editFlag
-	}
-
-}
-
-
-const ProjectGeneralContainer = connect(mapStateToProps, {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} )(ProjectGeneral)
-export default ProjectGeneralContainer
+export default ProjectsPage;

@@ -1,8 +1,8 @@
 import React from "react";
 import p from './project-general.module.css'
-import ShowFullProjectData from './full-project-data';
+import ProjectDataView from '../ProjectDataView/ProjectDataView';
 
-interface ShowFullProject {
+interface ProjectsList {
     token: string,
     projectsList: ProjectsList,
     ShowFullProject:object ,
@@ -14,11 +14,11 @@ interface ShowFullProject {
     setInitialValue: object
   }
 
-const ProjectsList = (props:ShowFullProject) => {
+const ProjectsList = (props:ProjectsList) => {
     return (
         <div className={p.projects__container}>
-                 <ShowFullProjectData     initialValue={props.initialValue} 
-                                          editFlag = {props.editFlag}
+                 <ProjectDataView     initialValue={props.initialValue} 
+                                      editFlag = {props.editFlag}
                                           setInitialValue = {props.setInitialValue}
                                           setEditMode={props.setEditMode}
                                           token={props.token}
