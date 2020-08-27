@@ -1,18 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './DeleteWindowStyle.css'
-interface Delete {
-    cancelDelete: () => void,
-    deleteProject: () => void
+import React from 'react';
+import PropTypes from 'prop-types';
+import './DeleteWindowStyle.css';
+interface DeleteProjectProps {
+  cancelDelete: () => void,
+  deleteProject: () => void
 }
 
-const DeleteConfirmationWindow: React.FunctionComponent<Delete>= (props) => {
-  const onDeleteProject = () => {
-    props.deleteProject()
-  }
-  const onCancel = () => {
-    props.cancelDelete()
-  }
+const DeleteConfirmationWindow: React.FunctionComponent<DeleteProjectProps> = (props) => {
+  const onDeleteProject = (): void => {
+    props.deleteProject();
+  };
+
+  const onCancel = (): void => {
+    props.cancelDelete();
+  };
+
   return (
     <div className='modal'>
       <div className='modal__window'>
@@ -29,13 +31,13 @@ const DeleteConfirmationWindow: React.FunctionComponent<Delete>= (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 DeleteConfirmationWindow.propTypes = {
   cancelDelete: PropTypes.func,
   deleteProject: PropTypes.func
-}
+};
 
 
-export default DeleteConfirmationWindow
+export default DeleteConfirmationWindow;

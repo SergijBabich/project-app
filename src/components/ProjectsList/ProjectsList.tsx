@@ -1,33 +1,39 @@
-import React from "react";
-import p from './project-general.module.css'
+import React from 'react';
+import p from './project-general.module.css';
 import ProjectDataView from '../ProjectDataView/ProjectDataView';
 
+interface initialValues {
+  _id: string
+  title: string
+  description: string
+  token: string
+}
+
+
 interface ProjectsList {
-    token: string,
-    projectsList: ProjectsList,
-    ShowFullProject:object ,
-    initialValue: object,
-    editFlag: boolean,
-    setEditMode: object,
-    removeUsersProject:object ,
-    editUserProject:object,
-    setInitialValue: object
+  token: string,
+  projectsList: initialValues,
+  initialValue: initialValues,
+  editFlag: boolean,
+  setEditMode: () => void,
+  removeUsersProject: () => void ,
+  editUserProject: () => void,
+  setInitialValue: (initialValues: initialValues) => void 
   }
 
-const ProjectsList = (props:ProjectsList) => {
-    return (
-        <div className={p.projects__container}>
-                 <ProjectDataView     initialValue={props.initialValue} 
-                                      editFlag = {props.editFlag}
-                                          setInitialValue = {props.setInitialValue}
-                                          setEditMode={props.setEditMode}
-                                          token={props.token}
-                                          removeUsersProject={props.removeUsersProject}
-                                          editUserProject={props.editUserProject}
-                                          projectsList = {props.projectsList} 
-             /> 
-        </div>
-
-    )
-}
+const ProjectsList: React.FunctionComponent<ProjectsList> = (props:ProjectsList) => {
+  return (
+    <div className={p.projects__container}>
+      <ProjectDataView initialValue={props.initialValue} 
+        editFlag = {props.editFlag}
+        setInitialValue = {props.setInitialValue}
+        setEditMode={props.setEditMode}
+        token={props.token}
+        removeUsersProject={props.removeUsersProject}
+        editUserProject={props.editUserProject}
+        projectsList = {props.projectsList} 
+      /> 
+    </div>
+  );
+};
 export default ProjectsList;
