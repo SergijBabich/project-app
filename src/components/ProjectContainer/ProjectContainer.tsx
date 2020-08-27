@@ -53,7 +53,7 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
 
   const [projects,setProjects] = useState(props.projectsList)
   const [expanded, setExpanded] = useState(false);
-  const [searchByTitle, setSearchByTitle] = React.useState('');
+  const [searchByTitle, setSearchByTitle] = useState('');
 
   const handleExpandChange = (panel: boolean) => (event: React.ChangeEvent<string>, isExpanded: boolean): void => {
     setExpanded(isExpanded ? panel : false);      
@@ -88,14 +88,13 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
       <form className={classesInputSearch.root} noValidate autoComplete="off">
         <TextField id="outlined-basic" variant="outlined" onChange={handleInputChange}/>
       </form>
-      {console.log(projects)}
       {projects.map( (el:ProjectsData , index:number) => {
         return (
           <div key={index}>
             <div>
               <p>{markSearchingsLetters(el.title, projects[index].title.search(searchByTitle), searchByTitle.length)}</p>
             </div>
-            <Accordion expanded={expanded === index} onChange={handleExpandChange(index)}>
+            <Accordion expanded={expanded===index} onChange={handleExpandChange(index)}>
               <AccordionSummary
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
