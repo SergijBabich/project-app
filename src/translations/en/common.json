@@ -1,0 +1,35 @@
+{
+    "login": {
+        "title": "Welcome to {{framework}}",
+        "titleLogin": "Login",
+        "loginPlaceholder": "login",
+        "passPlaceholder": "password",
+        "submitLoginForm": "Log in"
+    },
+    "sidebar": {
+        "projects": "My projects",
+        "createProject": "Create Project", 
+        "logOut": "Log Out",
+        "settings": "Settings" 
+    },
+    "project": {
+        "expander": "expander",
+        "edit": "edit",
+        "delete": "delete",
+        "cancel": "cancel",
+        "submit": "submit",
+        "askToCompfirm": "Do you really wanna delete the project"
+    },
+    "createProject": {
+        "title": "Title",
+        "titlePlaceholder": "ender the title",
+        "nextStep": "Next",
+        "error": "such project does exist",
+        "description": "Description",
+        "submit": "Submit",
+        "projectSuccessfullyCreated": "Project successfully created"
+    },
+    "settings": {
+        "mode" : "Light Dark"
+    }
+}

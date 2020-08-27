@@ -1,5 +1,6 @@
 import {UsersApi} from '../api/api'; 
 const SET_USER_DATA = 'SET-USER-DATA'; 
+const CLOSE_SESSION = 'CLOSE_SESSION';
 
  interface initialState {
   token?: string | null,
@@ -25,16 +26,27 @@ const loginReducer = ( state = initialState, action: any) => {
       login: action.data.login,
       errorCode: action.data.sendCode
     };
+  case CLOSE_SESSION: 
+    return {
+      ...state,  token: action.data.token,
+      status: action.data.status,
+    };
   default:
     return state;
   }
 };
 
+const closeUserSession = (data: any) => {
+  return {
+    type: CLOSE_SESSION,
+    data    
+  };  
+};
+
 const setUserToken = (data: any) => {
   return {
     type: SET_USER_DATA,
-    data
-    
+    data    
   };  
 };
 
@@ -43,7 +55,12 @@ export const sendFormForAuthorization = (login: string, password: string) => {
     const data = await UsersApi.login(login, password);
     dispatch(setUserToken(data));
   };  
+};
 
+export const closeSession = (data) => {
+  return async (dispatch: dispatch) => {
+    dispatch(closeUserSession(data));
+  };  
 };
 
 

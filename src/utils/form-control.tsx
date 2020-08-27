@@ -7,7 +7,6 @@ interface FieldProps {
    meta: boolean
 }
 
-
 const FormControl = ({meta,...props}: FieldProps) => {
   const hasError = meta.touched && meta.error;
   return (
@@ -21,7 +20,6 @@ const FormControl = ({meta,...props}: FieldProps) => {
     </div>
   );
 };
-
 
 export const Input = (props:FieldProps) => {
   const {input, ...restProps} = props;

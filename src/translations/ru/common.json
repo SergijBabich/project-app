@@ -1,0 +1,35 @@
+{
+    "login": {
+        "title": "Welcome to {{framework}}",
+        "titleLogin": "Логин",
+        "loginPlaceholder": "логин",
+        "passPlaceholder": "пароль",
+        "submitLoginForm": "Войти"
+    },
+    "sidebar": {
+        "projects": "Мои проекты",
+        "createProject": "Создать проект", 
+        "logOut": "Выйти",
+        "settings": "Настройки" 
+    },
+    "project": {
+        "expander": "Расширитель",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "cancel": "Отменить",
+        "submit": "Подтвердить",
+        "askToCompfirm": "Вы действительно хотите удалить проект?"
+    },
+    "createProject": {
+        "title": "Название",
+        "titlePlaceholder": "введите название",
+        "nextStep": "Дальше",
+        "error": "Такое название уже существует",
+        "description": "Описание",
+        "submit": "Создать",
+        "projectSuccessfullyCreated": "Проект успешно создан"
+    },
+    "settings": {
+        "mode" : "Светлый темный"
+    }
+}

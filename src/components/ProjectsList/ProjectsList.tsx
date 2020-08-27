@@ -1,37 +1,20 @@
 import React from 'react';
-import p from './project-general.module.css';
-import ProjectDataView from '../ProjectDataView/ProjectDataView';
+import ProjectDataView from '../ProjectDataView';
+import './ProjectsList.css';
+import {ProjectsListProps} from './ProjectsList-modules';
 
-interface initialValues {
-  _id: string
-  title: string
-  description: string
-  token: string
-}
-
-
-interface ProjectsList {
-  token: string,
-  projectsList: initialValues,
-  initialValue: initialValues,
-  editFlag: boolean,
-  setEditMode: () => void,
-  removeUsersProject: () => void ,
-  editUserProject: () => void,
-  setInitialValue: (initialValues: initialValues) => void 
-  }
-
-const ProjectsList: React.FunctionComponent<ProjectsList> = (props:ProjectsList) => {
+const ProjectsList: React.FunctionComponent<ProjectsListProps> = (props: ProjectsListProps) => {
   return (
-    <div className={p.projects__container}>
+    <div className='projects__container'>
       <ProjectDataView initialValue={props.initialValue} 
-        editFlag = {props.editFlag}
-        setInitialValue = {props.setInitialValue}
+        editFlag={props.editFlag}
+        setInitialValue={props.setInitialValue}
         setEditMode={props.setEditMode}
         token={props.token}
         removeUsersProject={props.removeUsersProject}
         editUserProject={props.editUserProject}
-        projectsList = {props.projectsList} 
+        projectsList={props.projectsList}
+        t={props.t} 
       /> 
     </div>
   );

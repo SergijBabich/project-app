@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './DeleteWindowStyle.css';
-interface DeleteProjectProps {
-  cancelDelete: () => void,
-  deleteProject: () => void
-}
+import {DeleteProjectProps} from './DeleteConfirmationWindow-models';
 
-const DeleteConfirmationWindow: React.FunctionComponent<DeleteProjectProps> = (props) => {
+const DeleteConfirmationWindow: React.FunctionComponent<DeleteProjectProps> = (props: DeleteProjectProps) => {
   const onDeleteProject = (): void => {
     props.deleteProject();
   };
@@ -19,14 +16,14 @@ const DeleteConfirmationWindow: React.FunctionComponent<DeleteProjectProps> = (p
     <div className='modal'>
       <div className='modal__window'>
         <div className='window__title'>
-          <h3>Do you really wanna delete the project</h3>
+          <h3>{props.t('project.askToCompfirm')}</h3>
         </div>
         <div className='window__button'>
           <div className='window__button_action'>
-            <button className='button' onClick={onDeleteProject} type="button"  name="button">Delete </button> 
+            <button className='button' onClick={onDeleteProject} type="button" name="button">{props.t('project.delete')}</button> 
           </div>
           <div className='window__button_action'>
-            <button className='button' onClick={onCancel} type="button"  name="button">Cancel </button> 
+            <button className='button' onClick={onCancel} type="button" name="button">{props.t('project.cancel')}</button> 
           </div>
         </div>
       </div>
@@ -38,6 +35,5 @@ DeleteConfirmationWindow.propTypes = {
   cancelDelete: PropTypes.func,
   deleteProject: PropTypes.func
 };
-
 
 export default DeleteConfirmationWindow;

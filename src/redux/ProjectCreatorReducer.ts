@@ -5,7 +5,7 @@ const initialState = {
   projectId: null,
 };
 
-const projectCreatorReducer = ( state = initialState, action: any) => {
+const   projectCreatorReducer = ( state = initialState, action: any) => {
   switch (action.type) {
   case SET_PROJECT_ID: 
     return {
@@ -20,10 +20,8 @@ const projectCreatorReducer = ( state = initialState, action: any) => {
 const setProjectToken = (projectId) => {
   return {
     type: SET_PROJECT_ID,
-    projectId
-    
-  };
-  
+    projectId  
+  };  
 };
 
 export const createUsersProject = (title, description, token) => {
@@ -31,7 +29,6 @@ export const createUsersProject = (title, description, token) => {
     const data = await UsersApi.createNewProject(title, description, token);
     dispatch(setProjectToken(data.projectId));
   };  
-
 };
 
 export default projectCreatorReducer;

@@ -7,40 +7,9 @@ import PropTypes from 'prop-types' ;
 import {connect} from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} from '../../redux/ProjectReducer';
-import ProjectsList from '../ProjectsList/ProjectsList';
-import './ProjectsPage.css';
-
-interface StateProps {
-  token: string
-  projectsList: string
-  status: string
-  initialValue: initialValues
-  editFlag: boolean
-}
-interface ProjectPage {
-  token: string
-  projectsList: string
-  status: string
-  initialValue: initialValues
-  editFlag: boolean
-  getUsersProjects: (token: string) => void
-  editUserProject: () => void
-  removeUsersProject: () => void
-  setInitialValue: () => void
-  setEditMode: () => void
-}
-
-interface initialValues {
-  titleEdit: string,
-  descriptionEdit: string
-}
-
-interface ProjectsData {
-  _id: string,
-  title:string,
-  description: string,
-  token: string
-}
+import ProjectsList from '../ProjectsList';
+import './ProjectContainer.css';
+import {StateProps, ProjectPageProps, ProjectsData} from './ProjectContainer-models';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ProjectsPage: React.FunctionComponent<ProjectPage> = (props:ProjectPage) => {
+const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPageProps) => {
 
   useEffect(() => {
     props.getUsersProjects(props.token);
@@ -82,7 +51,7 @@ const ProjectsPage: React.FunctionComponent<ProjectPage> = (props:ProjectPage) =
 
   return (
     <div className='projects'>
-      { props.projectsList.map( (el:ProjectsData , index:number) => {
+      {props.projectsList.map( (el:ProjectsData , index:number) => {
         return (
           <div key={index}>
             {el.title}
@@ -92,26 +61,26 @@ const ProjectsPage: React.FunctionComponent<ProjectPage> = (props:ProjectPage) =
                 id="panel1bh-header"
                 className={classes.MuiButtonBaseroot}
               >
-                <button  className='button'  onClick={() => {props.setEditMode(false);}}>Expander</button>
+                <button className='button' onClick={() => {props.setEditMode(false);}}>{props.t('project.expander')}</button>
               </AccordionSummary>
               <AccordionDetails>
                 <ProjectsList initialValue={props.initialValue} 
                   editFlag={props.editFlag} 
-                  setInitialValue = {props.setInitialValue}
+                  setInitialValue={props.setInitialValue}
                   setEditMode={props.setEditMode}
                   key={index} 
                   removeUsersProject={props.removeUsersProject} 
                   getUsersProjects={props.getUsersProjects}
                   token={props.token}
                   editUserProject={props.editUserProject}  
-                  projectsList ={el} />
+                  projectsList={el}
+                  t={props.t} />
               </AccordionDetails>
             </Accordion>
           </div>
         );
       })}
-    </div>
-  
+    </div>  
   );
 };
 
@@ -138,5 +107,5 @@ const mapStateToProps = (state: StateProps) => {
   };
 };
 
-const ProjectGeneralContainer = connect(mapStateToProps, {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} )(ProjectsPage);
-export default ProjectGeneralContainer;
+const ProjectContainer = connect(mapStateToProps, {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} )(ProjectsPage);
+export default ProjectContainer;

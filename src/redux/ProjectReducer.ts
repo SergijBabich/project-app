@@ -1,5 +1,4 @@
-import {UsersApi} from '../api/api'; 
-import { act } from 'react-dom/test-utils';
+import {UsersApi} from '../api/api';
 const GET_USERS_PROJECTS = 'GET_USERS_PROJECTS'; 
 const EDIT_STATUS = 'EDIT_STATUS';
 const SET_INITIAL_VALE = 'SET_INITIAL_VALE';
@@ -10,7 +9,7 @@ interface ProjectsData {
   title: string
   description: string
   status?: string
-}
+};
 
 interface initialState {
   token: string | null
@@ -18,12 +17,12 @@ interface initialState {
   status: string | null
   initialValue: string | null
   editFlag: boolean | null
-}
+};
 
 interface projectReducer {
   state: initialState
   action: ProjectsData
-}
+};
 
 const initialState = {
   token: null,
@@ -79,34 +78,34 @@ const setFlagMode = (editFlag:boolean) => {
 };
 
 export const editUserProject = (title: string, description: string,id: string, token:string) => {
-  return  async (dispatch: dispatch) => {
+  return async (dispatch: dispatch) => {
     const data = await UsersApi.saveEditedProject(title, description,id, token);
     dispatch(getUsersProjectsList(data));
   };  
 };
 
 export const getUsersProjects = (token: string) => {
-  return  async (dispatch: dispatch) => {
+  return async (dispatch: dispatch) => {
     const data = await UsersApi.getProjectsList(token);
     dispatch(getUsersProjectsList(data)); 
   };  
 };
 
 export const removeUsersProject = (id: string, token: string) => {
-  return   async (dispatch: dispatch) => {
+  return async (dispatch: dispatch) => {
     const data = await UsersApi.deleteProject(id, token);
     dispatch(getUsersProjectsList(data)); 
   };
 };
 
 export const setInitialValue = (el) => {
-  return   async (dispatch: dispatch) => {
+  return async (dispatch: dispatch) => {
     dispatch(setMode(el)); 
   };
 };
 
 export const setEditMode = (editFlag) => {
-  return   async (dispatch: dispatch) => {
+  return async (dispatch: dispatch) => {
     dispatch(setFlagMode(editFlag)); 
   };
 };

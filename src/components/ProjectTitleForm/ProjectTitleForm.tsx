@@ -1,20 +1,17 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Input} from '../../utils/form-control';
-import {required, checkformat} from '../../utils/validators/validators';
+import {required, checkformat} from '../../utils/Validators/validators';
+import {ProjectTitleFormProps} from './ProjectTitleForm-modules';
+import './ProjectTitleForm.css';
 
-interface ProjectDescriptionForm {
-    handleSubmit: () => void
-    checkTtitle: boolean
-  }
-
-const ProjectTitleForm: React.FunctionComponent<ProjectDescriptionForm> = (props:ProjectDescriptionForm) => {
+const ProjectTitleForm: React.FunctionComponent<ProjectTitleFormProps> = (props: ProjectTitleFormProps) => {
   return (
-    <form   className='form' onSubmit = {props.handleSubmit}>
-      <h3 >Enter title</h3>
-      <Field component={Input}     validate={[required, checkformat]}  name={'title'}  placeholder='String from soung' />
-      <button> Next </button>
-      {props.checkTtitle && <div className='error'>this title already exist </div>}
+    <form className='form' onSubmit={props.handleSubmit}>
+      <h3>{props.t('createProject.title')}</h3>
+      <Field component={Input} validate={[required, checkformat]} name={'title'} placeholder={props.t('createProject.titlePlaceholder')} />
+      <button>{props.t('createProject.nextStep')}</button>
+      {props.checkTtitle && <div className='error'>{props.t('createProject.error')}</div>}
     </form>   
   );
 };

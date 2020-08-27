@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import './Settings.css';
+import {SettingsProps} from './Settings-modules';
 
-interface Settings {
-  onChangeBackgroundColor: (mobe: boolean)  => void
-}
-
-const Settings: React.FunctionComponent<Settings> = (props: Settings) => { 
+const Settings: React.FunctionComponent<SettingsProps> = (props: SettingsProps) => { 
   const [mode, setMode] = useState(false);
   const handleChange = (): void => {
     setMode(!mode);
     props.onChangeBackgroundColor(mode);    
   };
+
   return (
     <div className='settings'>
-      <input type="checkbox" name={'name'} onChange={handleChange} />
-      <span>Light/Dark</span>
+      <input type='checkbox' name={'name'} onChange={handleChange} />
+      <span>{props.t('settings.mode')}</span>
     </div>
   );
 };
