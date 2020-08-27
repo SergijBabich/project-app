@@ -52,20 +52,24 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
   const classesInputSearch = useStylesInputSearch();
 
   const [projects,setProjects] = useState(props.projectsList)
-  const [expanded, setExpanded] = useState(false);
+  let [expanded, setExpanded] = useState(false);
   const [searchByTitle, setSearchByTitle] = useState('');
 
   const handleExpandChange = (panel: boolean) => (event: React.ChangeEvent<string>, isExpanded: boolean): void => {
+    console.log(panel);
     setExpanded(isExpanded ? panel : false);      
   };
-
+  
   const handleInputChange = (event: { target: { value: string; }; }) => {
     setSearchByTitle(event.target.value.trim());
   };
 
   useEffect(() => {
-    const filteredProjects = props.projectsList.filter((project: ProjectsData): Array<ProjectsData> => {
-      return project.title.toLocaleLowerCase().includes(searchByTitle.toLocaleLowerCase())
+    const filteredProjects = props.projectsList.filter((project: ProjectsData, index): Array<ProjectsData> => {
+      return (
+        project.description.toLocaleLowerCase().includes(searchByTitle.toLocaleLowerCase()),
+        project.title.toLocaleLowerCase().includes(searchByTitle.toLocaleLowerCase())
+      ); 
     });
 
     setProjects(filteredProjects);
@@ -74,7 +78,7 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
   if(!props.token) {
     return <Redirect to={'/login'} />;
   }
-  
+
   const markSearchingsLetters = (string: string, pos: number, len: number): JSX.Element => {
     return (
       <>
@@ -88,13 +92,13 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
       <form className={classesInputSearch.root} noValidate autoComplete="off">
         <TextField id="outlined-basic" variant="outlined" onChange={handleInputChange}/>
       </form>
-      {projects.map( (el:ProjectsData , index:number) => {
+      {projects.map( (el: ProjectsData , index: number) => {
         return (
-          <div key={index}>
+          <div key={el._id}>
             <div>
               <p>{markSearchingsLetters(el.title, projects[index].title.search(searchByTitle), searchByTitle.length)}</p>
             </div>
-            <Accordion expanded={expanded===index} onChange={handleExpandChange(index)}>
+            <Accordion expanded={expanded === index} onChange={handleExpandChange(index)}>
               <AccordionSummary
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
