@@ -78,9 +78,7 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
   const markSearchingsLetters = (string: string, pos: number, len: number): JSX.Element => {
     return (
       <>
-      {string.slice(0, pos)}
-      <mark>{string.slice(pos, pos + len)}</mark>
-      {string.slice(pos + len)}
+        {string.slice(0, pos)}<mark>{string.slice(pos, pos + len)}</mark>{string.slice(pos + len)}
       </>
     )
   }
