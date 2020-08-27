@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Textarea} from '../../utils/form-control';
 import {required} from '../../utils/Validators/validators';
-import {ProjectDescriptionFormProps} from './ProjectDescriptionFormRedux-modules';
+import {ProjectDescriptionFormProps} from './ProjectDescriptionForm-models';
  
 
 const ProjectDescriptionForm: React.FunctionComponent<ProjectDescriptionFormProps> = (props: ProjectDescriptionFormProps) => {

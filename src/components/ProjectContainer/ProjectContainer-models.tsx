@@ -10,7 +10,7 @@ export interface StateProps {
   
 export interface ProjectPageProps {
   token: string
-  projectsList: string
+  projectsList: Array<ProjectsData>
   status: string
   initialValue: InitialValues
   editFlag: boolean

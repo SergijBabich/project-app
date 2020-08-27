@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types' ;
 import {Input, Textarea} from '../../utils/form-control';
 import {required, checkformat} from '../../utils/Validators/validators';
-import './EditProjectFormRedux.css';
-import {EditProjectProps} from './EditProjectFormRedux-models';
+import './EditProjectForm.css';
+import {EditProjectProps} from './EditProjectForm-models';
 
 const EditProjectForm: React.FunctionComponent<EditProjectProps>=(props: EditProjectProps) => {
   const onCancelEdit = (): void => {

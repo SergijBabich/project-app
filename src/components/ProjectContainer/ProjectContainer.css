@@ -161,3 +161,7 @@
   box-shadow: 0 0 10px #1a73e8;
   background: linear-gradient(45deg, #83ade2, #1a73e8);
 }
+
+.searchingLetters {
+  color: yellow;
+}

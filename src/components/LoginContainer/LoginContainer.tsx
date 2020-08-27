@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import './LoginContainer.css';
 import {sendFormForAuthorization} from '../../redux/LoginReducer';
-import LoginFormRedux from '../LoginFormRedux';
+import LoginFormRedux from '../LoginForm';
 import { withTranslation } from 'react-i18next';
 import {FormValue, LoginProps} from './LoginContainer-models';
 

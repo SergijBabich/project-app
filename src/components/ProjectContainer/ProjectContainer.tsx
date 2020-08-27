@@ -5,11 +5,21 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import PropTypes from 'prop-types' ;
 import {connect} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {getUsersProjects, editUserProject, removeUsersProject, setInitialValue, setEditMode} from '../../redux/ProjectReducer';
 import ProjectsList from '../ProjectsList';
 import './ProjectContainer.css';
-import {StateProps, ProjectPageProps, ProjectsData} from './ProjectContainer-models';
+import {ProjectsData, ProjectPageProps} from './ProjectContainer-models'
+
+const useStylesInputSearch = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,26 +46,58 @@ const ProjectsPage: React.FunctionComponent<ProjectPageProps>=(props: ProjectPag
 
   useEffect(() => {
     props.getUsersProjects(props.token);
-  }, []); 
-
+  }, []);
+   
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
+  const classesInputSearch = useStylesInputSearch();
 
-  const handleChange = (panel: boolean) => (event: React.ChangeEvent<string>, isExpanded: boolean) => {
+  const [projects,setProjects] = useState(props.projectsList)
+  const [expanded, setExpanded] = useState(false);
+  const [searchByTitle, setSearchByTitle] = React.useState('');
+
+  const handleExpandChange = (panel: boolean) => (event: React.ChangeEvent<string>, isExpanded: boolean): void => {
     setExpanded(isExpanded ? panel : false);      
   };
+
+  const handleInputChange = (event: { target: { value: string; }; }) => {
+    setSearchByTitle(event.target.value.trim());
+  };
+
+  useEffect(() => {
+    const filteredProjects = props.projectsList.filter((project: ProjectsData): Array<ProjectsData> => {
+      return project.title.toLocaleLowerCase().includes(searchByTitle.toLocaleLowerCase())
+    });
+
+    setProjects(filteredProjects);
+  }, [searchByTitle, props.projectsList]);
 
   if(!props.token) {
     return <Redirect to={'/login'} />;
   }
+  
+  const markSearchingsLetters = (string: string, pos: number, len: number): JSX.Element => {
+    return (
+      <>
+      {string.slice(0, pos)}
+      <mark>{string.slice(pos, pos + len)}</mark>
+      {string.slice(pos + len)}
+      </>
+    )
+  }
 
   return (
     <div className='projects'>
-      {props.projectsList.map( (el:ProjectsData , index:number) => {
+      <form className={classesInputSearch.root} noValidate autoComplete="off">
+        <TextField id="outlined-basic" variant="outlined" onChange={handleInputChange}/>
+      </form>
+      {console.log(projects)}
+      {projects.map( (el:ProjectsData , index:number) => {
         return (
           <div key={index}>
-            {el.title}
-            <Accordion expanded={expanded === index} onChange={handleChange(index)}>
+            <div>
+              <p>{markSearchingsLetters(el.title, projects[index].title.search(searchByTitle), searchByTitle.length)}</p>
+            </div>
+            <Accordion expanded={expanded === index} onChange={handleExpandChange(index)}>
               <AccordionSummary
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"

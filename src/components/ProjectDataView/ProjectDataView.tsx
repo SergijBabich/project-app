@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import DeleteConfirmationWindow from '../DeleteConfirmationWindow';
-import EditProjectFormRedux from '../EditProjectFormRedux';
+import EditProjectFormRedux from '../EditProjectForm';
 import './ProjectDataView.css';
 import {ProjectDataViewProps,ProjectEditForm, InitialValues} from './ProjectDataView-models';
 
@@ -49,7 +49,6 @@ const ProjectDataView: React.FunctionComponent<ProjectDataViewProps> = (props: P
       {!props.editFlag?
         <div>
           <div className='project__title'>
-            {props.projectsList.title}
             <div>
               <button className='button' onClick={onEditMode} >{props.t('project.edit')}</button>
             </div>

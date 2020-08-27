@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import {Input} from '../../utils/form-control';
 import {required, minLengthCreator} from '../../utils/Validators/validators';
-import './LoginFormRedux.css';
-import {LoginFormProps} from './LoginFormRedux-models';
+import './LoginForm.css';
+import {LoginFormProps} from './LoginForm-models';
 
 const minLengthPassValue = minLengthCreator(4);
 const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProps) => {

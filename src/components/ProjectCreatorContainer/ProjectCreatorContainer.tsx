@@ -3,7 +3,7 @@ import {connect} from   'react-redux';
 import { Redirect} from 'react-router-dom'; 
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types'; 
-import ProjectDescriptionFormRedux from '../ProjectDescriptionFormRedux';
+import ProjectDescriptionFormRedux from '../ProjectDescriptionForm';
 import ProjectTitleFormRedux from '../ProjectTitleForm';
 import {createUsersProject} from '../../redux/ProjectCreatorReducer';
 import { withTranslation } from 'react-i18next';
