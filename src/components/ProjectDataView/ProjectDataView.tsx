@@ -57,7 +57,7 @@ const ProjectDataView: React.FunctionComponent<ProjectDataViewProps> = (props: P
             </div>
           </div>
           <div className='project__description'>
-            {props.projectsList.description}
+            {props.markTitlesLetters(props.projectsList.description, props.projectsList.description.search(props.searchingValue), props.searchingValue.length) }
           </div>
         </div>:
         <div>

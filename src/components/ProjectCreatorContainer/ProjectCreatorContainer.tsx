@@ -5,18 +5,17 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types'; 
 import ProjectDescriptionFormRedux from '../ProjectDescriptionForm';
 import ProjectTitleFormRedux from '../ProjectTitleForm';
-import {createUsersProject} from '../../redux/ProjectCreatorReducer';
+import {createUsersProject, saveProjectTitle} from '../../redux/ProjectCreatorReducer';
 import { withTranslation } from 'react-i18next';
 import {StateProps, FormValue, ProjectCreatorProps} from './ProjectCreatorContainer-modules';
 
 const ProjectCreator: React.FunctionComponent<ProjectCreatorProps> = (props: ProjectCreatorProps) => {
   const [step, setStep] = useState(1);
-  const [title, setTitle] = useState(null);
   const [checkTtitle, setCheckTitle] = useState(false);
   const history = useHistory();
 
   const setProjectsTitle = (value: FormValue): void => {
-    setTitle(value.title);
+    props.saveProjectTitle(value.title)
     const findTheSameTitleName = props.projectsList.find((el) => el.title === value.title);
     
     if (!findTheSameTitleName) {
@@ -28,17 +27,15 @@ const ProjectCreator: React.FunctionComponent<ProjectCreatorProps> = (props: Pro
   };
 
   const setProjectsDescription = (value: FormValue): void => {
-    props.createUsersProject(title, value.description.trim(), props.token);
-    setStep(step+1);
+    props.createUsersProject(props.title, value.description.trim(), props.token);
+    redirect()
   };
 
   const redirect = () => {
-    setTimeout(() =>history.push('/main/projects') , 2000);       
+    if(props.projectsList) {
+      history.push('/main/projects');
+    }       
   };
-  
-  if(step ===3 ) {  
-    redirect();
-  }
 
   if(!props.token) {
     return <Redirect to={'/login'} />;
@@ -80,10 +77,11 @@ const mapStateToProps = (state: StateProps) => {
     token: state.login.token,
     projectId: state.projectCreator.projectId,
     projectsList: state.projects.projectsList,
+    title: state.projectCreator.title
   };
 };
 
-const ProjectCreatorContainer = connect(mapStateToProps, {createUsersProject} )(ProjectCreator);
+const ProjectCreatorContainer = connect(mapStateToProps, {createUsersProject, saveProjectTitle} )(ProjectCreator);
 const ProjectCreatorContainerTranslated = withTranslation('common')(ProjectCreatorContainer); 
 
 export default ProjectCreatorContainerTranslated;

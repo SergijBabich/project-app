@@ -16,5 +16,7 @@ export interface ProjectsListProps {
   removeUsersProject: () => void ,
   editUserProject: () => void,
   setInitialValue: (initialValues: InitialValues) => void
-  t: (value: string) => ReactNode
+  t: (value: string) => ReactNode,
+  projectSearching: () => void,
+  searchingValue: string | null
 }

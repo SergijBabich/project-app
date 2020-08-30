@@ -5,7 +5,8 @@ export interface StateProps {
   projectsList: ProjectsData
   status: string
   initialValue: InitialValues
-  editFlag: boolean
+  editFlag: boolean,
+  searchingValue: string | null
 }
   
 export interface ProjectPageProps {
@@ -13,13 +14,15 @@ export interface ProjectPageProps {
   projectsList: Array<ProjectsData>
   status: string
   initialValue: InitialValues
-  editFlag: boolean
+  editFlag: boolean,
+  searchingValue: string | null
   getUsersProjects: (token: string) => void
   editUserProject: () => void
   removeUsersProject: () => void
   setInitialValue: () => void
   setEditMode: () => void
-  t: (value: string) => ReactNode
+  t: (value: string) => ReactNode,
+  projectSearching: () => void
 }
   
 export interface InitialValues {

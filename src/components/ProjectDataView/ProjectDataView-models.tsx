@@ -26,5 +26,7 @@ export  interface ProjectDataViewProps {
   removeUsersProject: () => void
   editUserProject: (title: string, desc: string, id: string, token: string) => void
   projectsList: ProjectsData
-  t: (value: string) => ReactNode
+  t: (value: string) => ReactNode,
+  projectSearching: () => void,
+  searchingValue: string | null
 }

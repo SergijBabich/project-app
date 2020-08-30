@@ -15,6 +15,8 @@ const ProjectsList: React.FunctionComponent<ProjectsListProps> = (props: Project
         editUserProject={props.editUserProject}
         projectsList={props.projectsList}
         t={props.t} 
+        markTitlesLetters={props.markTitlesLetters}
+        searchingValue={props.searchingValue}
       /> 
     </div>
   );

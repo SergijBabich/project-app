@@ -3,7 +3,7 @@ const GET_USERS_PROJECTS = 'GET_USERS_PROJECTS';
 const EDIT_STATUS = 'EDIT_STATUS';
 const SET_INITIAL_VALE = 'SET_INITIAL_VALE';
 const FLAG = 'FLAG';
-
+const SEARCHING_PROJECT = 'SEARCHING_PROJECT';
 interface ProjectsData {
   _id?: string
   title: string
@@ -29,7 +29,8 @@ const initialState = {
   projectsList: [],
   status:null,
   initialValue:null,
-  editFlag:null
+  editFlag:null,
+  searchingValue: ''
 };
 
 const projectReducer = ( state = initialState, action: any) => {
@@ -51,6 +52,10 @@ const projectReducer = ( state = initialState, action: any) => {
     return {
       ...state, editFlag: action.editFlag
     };
+  case SEARCHING_PROJECT:
+    return {
+      ...state, searchingValue: action.value
+    };    
   default:
     return state;
   }
@@ -74,6 +79,13 @@ const setFlagMode = (editFlag:boolean) => {
   return {
     type: FLAG,
     editFlag
+  };
+};
+
+const setSearchingValue = (value:boolean) => {
+  return {
+    type: SEARCHING_PROJECT,
+    value
   };
 };
 
@@ -109,5 +121,12 @@ export const setEditMode = (editFlag) => {
     dispatch(setFlagMode(editFlag)); 
   };
 };
+
+export const projectSearching = (value) => {
+  return async (dispatch: dispatch) => {
+    dispatch(setSearchingValue(value)); 
+  };
+};
+
 
 export default projectReducer;
